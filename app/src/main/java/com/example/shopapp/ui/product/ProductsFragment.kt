@@ -31,7 +31,6 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding,ProductsViewModel>
 
     override fun initLogic() {
         super.initLogic()
-        Log.d("hakanfiratt", "productFragment giriş yapıldı. ")
         viewModel.getProductList()
 
         binding.imgBasket.setOnClickListener {
@@ -45,7 +44,6 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding,ProductsViewModel>
         viewModel.productListLiveData.observe(viewLifecycleOwner) {
             productList.clear()
             productList.addAll(it)
-            Log.d("hakanfiratt", "fragment productList: $productList")
             fillAndNotifyProductRecyclerView()
         }
     }
@@ -54,7 +52,6 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding,ProductsViewModel>
         productAdapter = ProductAdapter(
             productList = productList,
             onClicked = {
-                Log.d("hakanfiratt", "onClicked item: ${productList[it]}")
                 addToBasket(productList[it])
             }
         )

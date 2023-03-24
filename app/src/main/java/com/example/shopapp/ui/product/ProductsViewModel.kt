@@ -45,9 +45,7 @@ class ProductsViewModel @Inject constructor(
                         )
                     )
                 }
-                Log.d("hakanfiratt", "getRealTimeProductList: $productList ")
                 viewModelScope.launch {
-                    Log.d("hakanfiratt", "viewModel productList: ${productRepository.getRealTimeProductList()}")
                     productListLiveData.postValue(productRepository.getRealTimeProductList())
                 }
             }
