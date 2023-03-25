@@ -1,5 +1,6 @@
 package com.example.shopapp.ui.basket
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -57,9 +58,9 @@ class BasketAdapter(
 
     override fun getItemCount() = basketList.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(updatedList: List<BasketModel>) {
         this.basketList = updatedList
-        Log.d("hakanfiratt", "adapter basketList: $basketList ")
         notifyDataSetChanged()
     }
 }

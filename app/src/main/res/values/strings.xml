@@ -13,6 +13,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="products_fragment_label">Products</string>
+    <string name="products_detail_fragment_label">ProductDetail</string>
     <string name="basket_fragment_label">Baskets</string>
     <string name="add_basket">Sepete Ekle</string>
     <string name="pazarama">pazarama</string>
@@ -23,4 +24,7 @@
     <string name="total_tl">"%1$s TL"</string>
     <string name="products_in_stock">There are no products in stock</string>
     <string name="checkout">Sepeti Onayla</string>
+    <string name="edit_basket">Sepete Ekle</string>
+    <string name="desc_title">Ürün Açıklaması</string>
+    <string name="features_title">Ürün Özellikleri</string>
 </resources>

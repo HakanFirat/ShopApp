@@ -11,29 +11,36 @@ import com.example.shopapp.ui.common.base.RecyclerItemClickListener
 
 class ProductAdapter(
     private val productList: List<ProductModel>,
-    private val onClicked: RecyclerItemClickListener
+    private val onClickedRoot:RecyclerItemClickListener,
+    private val onClickedBasket: RecyclerItemClickListener,
 ): RecyclerView.Adapter<ProductAdapter.ProductHolder>() {
 
     class ProductHolder(
         private val binding: RowProductBinding,
-        private val onClicked: RecyclerItemClickListener
+        private val onClickedRoot: RecyclerItemClickListener,
+        private val onClickedBasket: RecyclerItemClickListener,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun from(
                 parent: ViewGroup,
-                onClicked: RecyclerItemClickListener
+                onClickedRoot: RecyclerItemClickListener,
+                onClickedBasket: RecyclerItemClickListener
             ): ProductHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = RowProductBinding.inflate(layoutInflater, parent, false)
-                return ProductHolder(binding = binding, onClicked = onClicked)
+                return ProductHolder(binding = binding, onClickedRoot = onClickedRoot, onClickedBasket = onClickedBasket)
             }
         }
 
         init {
 
+            binding.root.setOnClickListener {
+                onClickedRoot(adapterPosition)
+            }
+
             binding.btnAddBasket.setOnClickListener {
-                onClicked(adapterPosition)
+                onClickedBasket(adapterPosition)
             }
         }
 
@@ -47,7 +54,7 @@ class ProductAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductHolder =
-        ProductHolder.from(parent = parent,onClicked = onClicked)
+        ProductHolder.from(parent = parent,onClickedRoot = onClickedRoot, onClickedBasket = onClickedBasket)
 
     override fun onBindViewHolder(holder: ProductHolder, position: Int) =
         holder.bind(item = productList[position])

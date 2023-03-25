@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ProductFeatureModel(
     val type: String = "",
-    val value: String = "",
+    val feature: String = "",
 ): Parcelable

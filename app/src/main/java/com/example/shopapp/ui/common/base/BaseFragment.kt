@@ -10,9 +10,12 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.example.shopapp.data.AppError
 import com.example.shopapp.ui.common.DialogUtils
 import com.example.shopapp.ui.common.autoCleared
+import com.example.shopapp.ui.ext.safeNavigate
 import javax.inject.Inject
 
 abstract class BaseFragment<VB: ViewDataBinding, VM: ViewModel>: Fragment(), BaseView {
@@ -65,4 +68,8 @@ abstract class BaseFragment<VB: ViewDataBinding, VM: ViewModel>: Fragment(), Bas
     override fun showError(error: AppError) {
         dialogUtils.showAlertDialog(context = context, error = error)
     }
+
+    open fun navigateTo(direction: NavDirections) = findNavController().safeNavigate(direction)
+
+    open fun goBack() = findNavController().popBackStack()
 }

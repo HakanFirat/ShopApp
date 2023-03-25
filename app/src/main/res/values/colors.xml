@@ -15,4 +15,6 @@
     <color name="color_snack_bar_error">#F72400</color>
 
     <color name="grey">#839192 </color>
+    <color name="grey_trans">#80839192 </color>
+    <color name="grey_two">#808080</color>
 </resources>

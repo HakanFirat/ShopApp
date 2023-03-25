@@ -51,7 +51,10 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding,ProductsViewModel>
     private fun initProductRecyclerView() {
         productAdapter = ProductAdapter(
             productList = productList,
-            onClicked = {
+            onClickedRoot = {
+                onClickDetail(productList[it])
+            },
+            onClickedBasket = {
                 addToBasket(productList[it])
             }
         )
@@ -83,6 +86,12 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding,ProductsViewModel>
             )
         )
         requireView().showErrorSnackBar(getString(R.string.product_add), false)
+    }
+
+    private fun onClickDetail(productModel: ProductModel) {
+        val action =
+            ProductsFragmentDirections.actionProductsToProductDetail(productModel)
+        findNavController().navigate(action)
     }
 
 }

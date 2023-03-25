@@ -7,11 +7,11 @@ import kotlinx.parcelize.Parcelize
 data class ProductModel(
     val id: String = "",
     val image: String = "",
-    val detailImgList: ArrayList<String> = arrayListOf(),
+    val detailImgList: MutableList<String> = mutableListOf(),
     val productTitle: String = "",
     val productDescription: String = "",
     val productPrice: String = "",
     val productCount: String = "",
-    val productFeatures: ArrayList<ProductFeatureModel> = arrayListOf(),
+    val productFeatures: Map<String, String> = mapOf(),
     var totalAmount: Double = 0.0
 ) : Parcelable

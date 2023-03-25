@@ -15,6 +15,26 @@
             android:id="@+id/action_products_to_basket"
             app:destination="@id/basketFragment" />
 
+        <action
+            android:id="@+id/action_products_to_productDetail"
+            app:destination="@id/productDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.shopapp.ui.product.detail.ProductDetailFragment"
+        android:label="@string/products_detail_fragment_label"
+        tools:layout="@layout/fragment_product_detail">
+
+        <action
+            android:id="@+id/action_detail_to_basket"
+            app:destination="@id/basketFragment" />
+
+        <argument
+            android:name="objectProduct"
+            app:argType="com.example.shopapp.data.model.ProductModel" />
+
     </fragment>
 
     <fragment

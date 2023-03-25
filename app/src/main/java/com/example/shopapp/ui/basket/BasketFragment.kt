@@ -30,14 +30,10 @@ class BasketFragment : BaseFragment<FragmentBasketBinding, BasketViewModel>() {
 
     override fun initObservers() {
         super.initObservers()
-        Log.d("hakanfiratt", "fragment initObserver")
         viewModel.apply {
             readAllBasket.observe(viewLifecycleOwner) { basketList ->
-
                 totalBasket()
                 adapter.updateList(basketList)
-
-                Log.d("hakanfiratt", "fragment initObserver basketList: $basketList")
             }
 
             totalAmount.observe(viewLifecycleOwner) {
@@ -49,6 +45,10 @@ class BasketFragment : BaseFragment<FragmentBasketBinding, BasketViewModel>() {
 
     override fun initLogic() {
         super.initLogic()
+
+        binding.imgBack.setOnClickListener {
+            goBack()
+        }
     }
 
     private fun onRemoveBasketClick(s: String) {

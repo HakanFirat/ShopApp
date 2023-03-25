@@ -1,6 +1,5 @@
 package com.example.shopapp.ui.product
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,9 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,7 +24,7 @@ class ProductsViewModel @Inject constructor(
 
     val productListLiveData = MutableLiveData<List<ProductModel>>()
 
-    fun getProductList(): MutableList<ProductModel>  {
+    fun getProductList() {
         val firebaseDatabase = FirebaseDatabase.getInstance().reference
         val productList = mutableListOf<ProductModel>()
         val getData = object: ValueEventListener {
@@ -40,13 +37,13 @@ class ProductsViewModel @Inject constructor(
                             productDescription = i.child("description").value.toString(),
                             productPrice = i.child("price").value.toString(),
                             image = i.child("image").value.toString(),
-                            detailImgList = i.child("imageList").value as ArrayList<String>,
-                            productFeatures = i.child("product_features").value as ArrayList<ProductFeatureModel>,
+                            detailImgList = i.child("imageList").value as MutableList<String>,
+                            productFeatures = i.child("product_features").value as Map<String, String>,
                         )
                     )
                 }
                 viewModelScope.launch {
-                    productListLiveData.postValue(productRepository.getRealTimeProductList())
+                    productListLiveData.postValue(productList)
                 }
             }
 
@@ -55,7 +52,6 @@ class ProductsViewModel @Inject constructor(
         }
 
         firebaseDatabase.addValueEventListener(getData)
-        return productList
     }
 
     fun addToBasket(basket: BasketModel) {

@@ -8,7 +8,6 @@ import com.example.shopapp.data.model.ProductFeatureModel
 import com.example.shopapp.data.model.ProductModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.Dispatchers
@@ -27,17 +26,17 @@ class ProductRepository @Inject constructor(
                 for (i in snapshot.children){
                     productList.add(
                         ProductModel(
-                            id = i.child("title").value.toString(),
+                            id = i.child("id").value.toString(),
                             productTitle = i.child("title").value.toString(),
                             productDescription = i.child("description").value.toString(),
                             productPrice = i.child("price").value.toString(),
                             image = i.child("image").value.toString(),
                             detailImgList = i.child("imageList").value as ArrayList<String>,
-                            productFeatures = i.child("product_features").value as ArrayList<ProductFeatureModel>,
+                            productFeatures = i.child("product_features").value as Map<String, String>,
                         )
                     )
                 }
-                Log.d("hakanfiratt", "getRealTimeProductList: $productList ")
+                Log.d("dataaa", "getRealTimeProductList: $productList ")
             }
 
             override fun onCancelled(error: DatabaseError) {

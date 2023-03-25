@@ -9,9 +9,9 @@ fun ImageView.load(url: String?) {
         return
     Picasso.get()
         .load(url)
-        .placeholder(R.drawable.ic_launcher_background)
+        /*.placeholder(R.drawable.ic_launcher_background)*/
         // .placeholder(R.drawable.progress_animation)
-        .error(R.drawable.ic_launcher_background)
+        /*.error(R.drawable.ic_launcher_background)*/
         .resize(640, 0)
         // .onlyScaleDown()
         .into(this)
