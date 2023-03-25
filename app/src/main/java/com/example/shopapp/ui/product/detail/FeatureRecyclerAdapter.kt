@@ -1,6 +1,5 @@
 package com.example.shopapp.ui.product.detail
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +27,6 @@ class FeatureRecyclerAdapter(
         fun bind(item: ProductFeatureModel) {
             binding.tvType.text = item.type
             binding.tvValue.text = item.feature
-            Log.d("dataaa", "adapter : ${item.type} ")
             binding.executePendingBindings()
         }
     }

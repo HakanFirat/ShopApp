@@ -5,7 +5,6 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.shopapp.R
 import com.example.shopapp.databinding.ActivityMainBinding
 import com.example.shopapp.ui.common.base.BaseActivity
-import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

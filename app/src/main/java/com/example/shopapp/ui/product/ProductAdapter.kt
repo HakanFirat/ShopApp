@@ -1,5 +1,6 @@
 package com.example.shopapp.ui.product
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,7 @@ import com.example.shopapp.ui.common.BindingAdapter
 import com.example.shopapp.ui.common.base.RecyclerItemClickListener
 
 class ProductAdapter(
-    private val productList: List<ProductModel>,
+    private var productList: MutableList<ProductModel>,
     private val onClickedRoot:RecyclerItemClickListener,
     private val onClickedBasket: RecyclerItemClickListener,
 ): RecyclerView.Adapter<ProductAdapter.ProductHolder>() {
@@ -51,6 +52,12 @@ class ProductAdapter(
             binding.tvPrice.text = context.getString(R.string.total_tl, item.productPrice)
             binding.executePendingBindings()
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setFilteredList(mList: MutableList<ProductModel>){
+        this.productList = mList
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductHolder =

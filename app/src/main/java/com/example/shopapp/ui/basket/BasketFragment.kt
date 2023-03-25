@@ -1,7 +1,7 @@
 package com.example.shopapp.ui.basket
 
 
-import android.util.Log
+import android.view.View
 import com.example.shopapp.R
 import com.example.shopapp.databinding.FragmentBasketBinding
 import com.example.shopapp.ui.common.base.BaseFragment
@@ -30,6 +30,7 @@ class BasketFragment : BaseFragment<FragmentBasketBinding, BasketViewModel>() {
 
     override fun initObservers() {
         super.initObservers()
+
         viewModel.apply {
             readAllBasket.observe(viewLifecycleOwner) { basketList ->
                 totalBasket()
@@ -37,8 +38,21 @@ class BasketFragment : BaseFragment<FragmentBasketBinding, BasketViewModel>() {
             }
 
             totalAmount.observe(viewLifecycleOwner) {
-                if (it == null) binding.tvAmount.text = getString(R.string._0_TL)
-                else binding.tvAmount.text = getString(R.string.total_tl, it.toString())
+                if (it == null)
+                    binding.tvAmount.text = getString(R.string._0_TL)
+                else
+                    binding.tvAmount.text = getString(R.string.total_tl, it.toString())
+            }
+
+            totalCount.observe(viewLifecycleOwner) {
+                if (it == null){
+                    binding.tvProductCount.visibility = View.GONE
+                }
+                else{
+                    binding.tvProductCount.visibility = View.VISIBLE
+                    binding.tvProductCount.text = getString(R.string.product, it.toString())
+                }
+
             }
         }
     }

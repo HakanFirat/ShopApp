@@ -16,5 +16,7 @@
 
     <color name="grey">#839192 </color>
     <color name="grey_trans">#80839192 </color>
-    <color name="grey_two">#808080</color>
+    <color name="grey_two">#80808080</color>
+    <color name="purple">#FF33A2</color>
+    <color name="navyblue">#3339FF</color>
 </resources>

@@ -1,15 +1,12 @@
 package com.example.shopapp.ui.basket
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.shopapp.R
 import com.example.shopapp.data.model.BasketModel
 import com.example.shopapp.databinding.RowBasketBinding
 import com.example.shopapp.ui.common.BindingAdapter
-import com.example.shopapp.ui.ext.showErrorSnackBar
 
 class BasketAdapter(
     private val onRemoveBasketClick: (String) -> Unit = {},

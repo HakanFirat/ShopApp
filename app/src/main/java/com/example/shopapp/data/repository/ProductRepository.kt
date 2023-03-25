@@ -1,10 +1,8 @@
 package com.example.shopapp.data.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.shopapp.data.db.BasketDao
 import com.example.shopapp.data.model.BasketModel
-import com.example.shopapp.data.model.ProductFeatureModel
 import com.example.shopapp.data.model.ProductModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -36,7 +34,6 @@ class ProductRepository @Inject constructor(
                         )
                     )
                 }
-                Log.d("dataaa", "getRealTimeProductList: $productList ")
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -56,4 +53,6 @@ class ProductRepository @Inject constructor(
     suspend fun updateBasket(product: BasketModel) = basketDao.updateBasket(product)
 
     suspend fun totalBasket(): Double = basketDao.getTotalPrice()
+
+    suspend fun totalCount(): Int = basketDao.getTotalCount()
 }

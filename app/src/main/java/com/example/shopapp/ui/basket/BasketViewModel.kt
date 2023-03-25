@@ -1,6 +1,5 @@
 package com.example.shopapp.ui.basket
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +19,9 @@ class BasketViewModel @Inject constructor(
     val readAllBasket: LiveData<List<BasketModel>> = productRepository.readAllBasket
 
     private val _totalAmount = MutableLiveData(0.0)
+    private val _totalCount = MutableLiveData(0)
     val totalAmount: LiveData<Double> = _totalAmount
+    val totalCount: LiveData<Int> = _totalCount
 
     fun deleteFromBasket(basketId: String) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -36,11 +37,13 @@ class BasketViewModel @Inject constructor(
 
     fun increase(product: BasketModel) {
         _totalAmount.value = _totalAmount.value?.plus(product.productPrice)
+        _totalCount.value = _totalCount.value?.plus(product.count)
         updateBasket(product)
     }
 
     fun decrease(product: BasketModel) {
         _totalAmount.value = _totalAmount.value?.minus(product.productPrice)
+        _totalCount.value = _totalCount.value?.minus(product.count)
         updateBasket(product)
     }
 
@@ -51,6 +54,7 @@ class BasketViewModel @Inject constructor(
     fun totalBasket() {
         viewModelScope.launch() {
             _totalAmount.value = productRepository.totalBasket()
+            _totalCount.value = productRepository.totalCount()
         }
     }
 }

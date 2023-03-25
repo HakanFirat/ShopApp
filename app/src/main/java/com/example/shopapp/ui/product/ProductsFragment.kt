@@ -2,7 +2,8 @@ package com.example.shopapp.ui.product
 
 
 import android.annotation.SuppressLint
-import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shopapp.R
@@ -13,6 +14,7 @@ import com.example.shopapp.ui.common.base.BaseFragment
 import com.example.shopapp.ui.common.base.GridItemDecoration
 import com.example.shopapp.ui.ext.showErrorSnackBar
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class ProductsFragment : BaseFragment<FragmentProductsBinding,ProductsViewModel>() {
@@ -36,6 +38,17 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding,ProductsViewModel>
         binding.imgBasket.setOnClickListener {
             findNavController().navigate(R.id.action_products_to_basket)
         }
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+        })
     }
 
 
@@ -92,6 +105,23 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding,ProductsViewModel>
         val action =
             ProductsFragmentDirections.actionProductsToProductDetail(productModel)
         findNavController().navigate(action)
+    }
+
+    private fun filterList(query: String?) {
+        if (query != null) {
+            val filteredList = mutableListOf<ProductModel>()
+            for (i in productList) {
+                if (i.productTitle.lowercase(Locale.ROOT).contains(query)) {
+                    filteredList.add(i)
+                }
+            }
+
+            if (filteredList.isEmpty()) {
+                Toast.makeText(context, "No Data found", Toast.LENGTH_SHORT).show()
+            } else {
+                productAdapter.setFilteredList(filteredList)
+            }
+        }
     }
 
 }

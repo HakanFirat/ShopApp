@@ -39,13 +39,22 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding, Product
                 productPrice = safeArgs.productPrice
             )
         }
+    }
+
+    override fun initViews() {
+        super.initViews()
 
         initFeatureRecyclerView()
         initFeatureViewPager()
     }
 
-    override fun initViews() {
-        super.initViews()
+    override fun initObservers() {
+        super.initObservers()
+    }
+
+    override fun initLogic() {
+        super.initLogic()
+        setTextData()
 
         binding.imgBasket.setOnClickListener {
             binding.imgBasket.setOnClickListener {
@@ -56,15 +65,6 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding, Product
         binding.imgBack.setOnClickListener {
             goBack()
         }
-    }
-
-    override fun initObservers() {
-        super.initObservers()
-    }
-
-    override fun initLogic() {
-        super.initLogic()
-        setTextData()
     }
 
     @SuppressLint("NotifyDataSetChanged")
