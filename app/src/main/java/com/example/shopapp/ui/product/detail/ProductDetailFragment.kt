@@ -5,10 +5,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopapp.R
+import com.example.shopapp.data.model.BasketModel
 import com.example.shopapp.data.model.ProductFeatureModel
 import com.example.shopapp.data.model.ProductModel
 import com.example.shopapp.databinding.FragmentProductDetailBinding
 import com.example.shopapp.ui.common.base.BaseFragment
+import com.example.shopapp.ui.ext.showErrorSnackBar
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -65,6 +67,10 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding, Product
         binding.imgBack.setOnClickListener {
             goBack()
         }
+
+        binding.btnCheckout.setOnClickListener {
+            addToBasket(productModel)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -100,6 +106,20 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding, Product
         binding.tvTitle.text = productModel.productTitle
         binding.tvDescription.text = productModel.productDescription
         binding.tvAmount.text = getString(R.string.total_tl, productModel.productPrice)
+    }
+
+    private fun addToBasket(product: ProductModel){
+        viewModel.addToBasket(
+            BasketModel(
+                id,
+                product.id,
+                product.image,
+                product.productTitle,
+                product.productPrice.toInt(),
+                product.productCount
+            )
+        )
+        requireView().showErrorSnackBar(getString(R.string.product_add), false)
     }
 
 }

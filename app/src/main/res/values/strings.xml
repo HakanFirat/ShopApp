@@ -16,7 +16,7 @@
     <string name="add_basket">Sepete Ekle</string>
     <string name="pazarama">pazarama</string>
     <string name="product_add">Product added</string>
-    <string name="basket">Basket</string>
+    <string name="basket">Sepetim</string>
     <string name="_0">0</string>
     <string name="_0_TL">0.0 TL</string>
     <string name="total_tl">"%1$s TL"</string>
@@ -26,4 +26,5 @@
     <string name="edit_basket">Sepete Ekle</string>
     <string name="desc_title">Ürün Açıklaması</string>
     <string name="features_title">Ürün Özellikleri</string>
+    <string name="clean_basket">Sepeti Boşalt</string>
 </resources>

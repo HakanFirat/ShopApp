@@ -26,6 +26,10 @@ class BasketFragment : BaseFragment<FragmentBasketBinding, BasketViewModel>() {
     override fun initViews() {
         super.initViews()
         binding.rvBasket.adapter = adapter
+
+        binding.tvCleanBasket.setOnClickListener {
+            viewModel.deleteAllBasket()
+        }
     }
 
     override fun initObservers() {

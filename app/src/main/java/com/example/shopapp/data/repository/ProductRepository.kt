@@ -50,6 +50,8 @@ class ProductRepository @Inject constructor(
 
     suspend fun deleteFromBasket(basketId: String) = basketDao.deleteFromBasket(basketId)
 
+    suspend fun deleteAllBasket() = basketDao.deleteAllBasket()
+
     suspend fun updateBasket(product: BasketModel) = basketDao.updateBasket(product)
 
     suspend fun totalBasket(): Double = basketDao.getTotalPrice()
